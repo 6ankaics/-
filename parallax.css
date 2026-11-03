@@ -1,0 +1,390 @@
+body {
+    position: relative;
+    isolation: isolate;
+    margin: 0;
+}
+
+#parallax-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+header,
+main,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+.parallax-image {
+    position: absolute;
+    display: block;
+    width: clamp(100px, 15vw, 190px);
+    height: auto;
+    border: 3px solid rgba(255, 255, 255, 0.58);
+    border-radius: 12px;
+    opacity: 0.36;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    will-change: translate;
+}
+
+.parallax-image:nth-child(1) { top: 3%; left: 4%; transform: rotate(-9deg); }
+.parallax-image:nth-child(2) { top: 10%; right: 5%; transform: rotate(8deg); }
+.parallax-image:nth-child(3) { top: 18%; left: 15%; transform: rotate(5deg); }
+.parallax-image:nth-child(4) { top: 26%; right: 14%; transform: rotate(-7deg); }
+.parallax-image:nth-child(5) { top: 34%; left: 3%; transform: rotate(7deg); }
+.parallax-image:nth-child(6) { top: 42%; right: 4%; transform: rotate(-10deg); }
+.parallax-image:nth-child(7) { top: 50%; left: 18%; transform: rotate(-5deg); }
+.parallax-image:nth-child(8) { top: 58%; right: 17%; transform: rotate(9deg); }
+.parallax-image:nth-child(9) { top: 66%; left: 5%; transform: rotate(-7deg); }
+.parallax-image:nth-child(10) { top: 74%; right: 4%; transform: rotate(6deg); }
+.parallax-image:nth-child(11) { top: 82%; left: 20%; transform: rotate(8deg); }
+.parallax-image:nth-child(12) { top: 89%; right: 20%; transform: rotate(-8deg); }
+
+.search-status {
+    flex-basis: 100%;
+    color: #f5ffdf;
+    font-size: 14px;
+    text-align: center;
+}
+
+#parallax-background[data-layout="compact"] .parallax-image:nth-child(1) {
+    top: 7%;
+    left: 1%;
+    width: clamp(76px, 10vw, 110px);
+}
+
+#parallax-background[data-layout="compact"] .parallax-image:nth-child(2) {
+    top: 28%;
+    right: 1%;
+    width: clamp(76px, 10vw, 110px);
+}
+
+#parallax-background[data-layout="compact"] .parallax-image:nth-child(3) {
+    top: 51%;
+    left: 2%;
+    width: clamp(76px, 10vw, 110px);
+}
+
+#parallax-background[data-layout="compact"] .parallax-image:nth-child(4) {
+    top: 73%;
+    right: 2%;
+    width: clamp(76px, 10vw, 110px);
+}
+
+@media (max-width: 600px) {
+    .parallax-image {
+        width: clamp(76px, 20vw, 120px);
+        opacity: 0.28;
+    }
+
+    #parallax-background[data-layout="compact"] .parallax-image {
+        width: clamp(68px, 18vw, 96px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .parallax-image {
+        will-change: auto;
+    }
+}
+
+.theme-switcher {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+}
+
+.theme-button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff4c2;
+    cursor: pointer;
+    font: inherit;
+    font-size: 24px;
+    line-height: 1;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.theme-button[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.28);
+}
+
+.music-player {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 250px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    background: rgba(10, 52, 29, 0.72);
+    color: #fff;
+    text-align: left;
+}
+
+.music-player-icon {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.music-player-controls {
+    flex: 1;
+    min-width: 0;
+}
+
+.music-player select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 28px;
+    padding: 3px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+    background: #f7fff3;
+    color: #103a23;
+    font: inherit;
+    font-size: 13px;
+}
+
+.music-player-transport {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.music-player-transport button {
+    display: grid;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+}
+
+.music-player-transport input {
+    flex: 1;
+    min-width: 30px;
+    height: 18px;
+    margin: 0;
+    accent-color: #d7f7c8;
+    cursor: pointer;
+}
+
+.music-player-transport output {
+    min-width: 34px;
+    color: #fff;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.logo {
+    margin-top: 58px;
+}
+
+.music-player:focus-within {
+    box-shadow: 0 0 0 2px rgba(215, 247, 200, 0.45);
+}
+
+.logo {
+    display: inline-block;
+    max-width: calc(100% - 180px);
+}
+
+html[data-theme="dark"] body {
+    background-color: #101827 !important;
+    background-image: url("%D0%BB%D1%83%D0%BD%D0%BD%D0%B0%D1%8F.jpg") !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #eef2ff;
+}
+
+html[data-theme="dark"] header {
+    background: linear-gradient(135deg, #17233a, #202d48) !important;
+    border-bottom-color: #7688b3 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42) !important;
+}
+
+html[data-theme="dark"] .logo,
+html[data-theme="dark"] nav a,
+html[data-theme="dark"] main,
+html[data-theme="dark"] main a,
+html[data-theme="dark"] footer {
+    color: #eef2ff !important;
+}
+
+html[data-theme="dark"] nav a[aria-current="page"] {
+    background: rgba(174, 193, 239, 0.2) !important;
+    color: #fff !important;
+    box-shadow: inset 0 -3px 0 #aebfe7, 0 5px 14px rgba(0, 0, 0, 0.28) !important;
+}
+
+html[data-theme="dark"] nav a:hover {
+    background: rgba(174, 193, 239, 0.22) !important;
+}
+
+html[data-theme="dark"] main {
+    background: rgba(12, 19, 34, 0.56);
+}
+
+html[data-theme="dark"] .card {
+    background: rgba(21, 31, 51, 0.78) !important;
+    border-color: rgba(174, 193, 239, 0.4) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.44) !important;
+}
+
+html[data-theme="dark"] .card-content {
+    background: rgba(19, 29, 49, 0.9) !important;
+}
+
+html[data-theme="dark"] .card h2,
+html[data-theme="dark"] .card p,
+html[data-theme="dark"] main p {
+    color: #e1e8fa !important;
+}
+
+html[data-theme="dark"] .card a,
+html[data-theme="dark"] .search button,
+html[data-theme="dark"] .subscription-form button {
+    background: linear-gradient(135deg, #aebfe7, #788bb8) !important;
+    color: #101827 !important;
+}
+
+html[data-theme="dark"] footer {
+    background: linear-gradient(180deg, #17233a, #0c1424) !important;
+    border-top-color: #7688b3 !important;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.38) !important;
+}
+
+html[data-theme="dark"] .contact-info a,
+html[data-theme="dark"] .map-section a {
+    color: #c5d2f1 !important;
+}
+
+html[data-theme="dark"] .search input,
+html[data-theme="dark"] .subscription-form input {
+    background: #e8edf8 !important;
+    border-color: #aebfe7 !important;
+    color: #17233a !important;
+}
+
+html[data-theme="dark"] .search-status {
+    color: #e1e8fa;
+}
+
+html[data-theme="dark"] .music-player {
+    background: rgba(16, 24, 39, 0.88);
+    border-color: rgba(174, 193, 239, 0.6);
+}
+
+html[data-theme="dark"] .music-player select {
+    background: #e8edf8;
+    color: #17233a;
+}
+
+html[data-theme="dark"] .modal-content {
+    background-color: #17233a !important;
+    color: #eef2ff !important;
+}
+
+html[data-theme="dark"] .place-modal p {
+    color: #e1e8fa !important;
+}
+
+html[data-theme="dark"] .place-video-link {
+    background: linear-gradient(135deg, #aebfe7, #788bb8) !important;
+    color: #101827 !important;
+}
+
+html[data-theme="dark"] .close {
+    color: #c5d2f1 !important;
+}
+
+html[data-theme="dark"] .close:hover {
+    color: #fff !important;
+}
+
+html[data-theme="dark"] #scrollToTopButton {
+    background: linear-gradient(135deg, #aebfe7, #788bb8) !important;
+    color: #101827 !important;
+}
+
+html[data-theme="dark"] #scrollToTopButton:hover {
+    background: linear-gradient(135deg, #c5d2f1, #91a4d0) !important;
+}
+
+@media (max-width: 520px) {
+    .music-player {
+        top: 8px;
+        left: 8px;
+        width: min(220px, calc(100vw - 120px));
+        padding: 6px;
+        gap: 7px;
+    }
+
+    .music-player-icon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .music-player select {
+        height: 25px;
+    }
+
+    .music-player-transport button {
+        flex-basis: 25px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .theme-switcher {
+        right: 12px;
+    }
+
+    .theme-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo {
+        max-width: calc(100% - 190px);
+    }
+}

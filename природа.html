@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Достопримечательности Казахстана</title>
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('site-theme') === 'dark' ? 'dark' : 'light');
+    </script>
+    <link rel="stylesheet" href="parallax.css">
+
+    <style>
+
+
+        header {
+            background-color: #1B6B3D;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #a7d890;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        }
+
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color:rgb(250, 252, 250);
+            text-decoration: none;
+        }
+
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: aliceblue;
+            font-weight: bold;
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 8px 18px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        nav a[aria-current="page"] {
+            background: rgba(215, 247, 200, 0.2);
+            color: #f5ffdf;
+            box-shadow: inset 0 -3px 0 #d7f7c8, 0 5px 14px rgba(0, 0, 0, 0.16);
+        }
+
+        .search {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .search input[type="text"] {
+            box-sizing: border-box;
+            width: min(300px, calc(100vw - 130px));
+            padding: 10px 14px;
+            border: 1px solid rgba(215, 247, 200, 0.75);
+            border-radius: 8px;
+            background: #f7fff3;
+            font: inherit;
+            outline: none;
+        }
+
+        .search input[type="text"]:focus {
+            box-shadow: 0 0 0 3px rgba(215, 247, 200, 0.3);
+        }
+
+        .search button {
+            padding: 10px 20px;
+            background-color: #d7f7c8;
+            color: #103a23;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .search button:hover {
+            background-color: #a7d890;
+            transform: translateY(-1px);
+        }
+        main {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            color: white;
+        }
+        main a {
+            color: white;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+            margin: 30px 0;
+            backdrop-filter: blur(2px);
+        }
+        .card img {
+            display: block;
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.18);
+        }
+        .card-content {
+            padding: 22px 24px 26px;
+            text-align: left;
+            background: rgba(19, 62, 42, 0.58);
+        }
+        .card h2 {
+            font-size: 24px;
+            margin: 0 0 12px;
+            color: #f2f7f3;
+        }
+        .card p {
+            margin: 0 0 16px;
+            line-height: 1.6;
+            color: #edf3ef;
+        }
+        .card a {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #d7f7c8, #a7d890);
+            color: #103a23;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 14px rgba(23, 82, 40, 0.2);
+        }
+        footer {
+            background: linear-gradient(180deg, #1B6B3D, #14552f);
+            border-top: 3px solid #a7d890;
+            padding: 28px 0 18px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.16);
+        }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .footer-container > p {
+            margin: 0;
+        }
+        .contact-info {
+            text-align: left;
+            padding-left: 0;
+        }
+        .contact-info a {
+            color: #DDD;
+            text-decoration: none;
+        }
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+        }
+        .map-section {
+            width: 220px;
+        }
+        .map-section iframe {
+            display: block;
+            width: 220px;
+            height: 220px;
+            border: 0;
+            border-radius: 12px;
+        }
+        .map-section a {
+            color: #DDD;
+        }
+        .subscription-form {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .subscription-form form {
+            font-family: 'Comic Sans MS', cursive;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        .subscription-form input {
+            font-family: 'Comic Sans MS', cursive;
+            box-sizing: border-box;
+            width: 220px;
+            padding: 10px;
+            border: 1px solid rgba(215, 247, 200, 0.75);
+            border-radius: 8px;
+            background: #f7fff3;
+        }
+        .subscription-form button {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #d7f7c8;
+            color: #103a23;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .subscription-form button:hover {
+            background-color: #a7d890;
+            transform: translateY(-1px);
+        }
+        @media (max-width: 700px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-info {
+                text-align: center;
+            }
+        }
+        #scrollToTopButton {
+            font-family: 'Comic Sans MS', cursive;
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 54px;
+            height: 54px;
+            display: none;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1B6B3D, #4CAF50);
+            color: #fff;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            z-index: 999;
+        }
+
+        #scrollToTopButton:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.32);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #f4fff2;
+            color: #163b26;
+            margin: 5vh auto;
+            padding: 24px;
+            border-radius: 16px;
+            width: calc(100% - 48px);
+            max-width: 760px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+            text-align: left;
+        }
+
+        .place-modal h2 {
+            margin: 0 40px 16px 0;
+        }
+
+        .place-modal p {
+            color: #233b2d;
+        }
+
+        .place-modal-image {
+            display: block;
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .place-modal-media {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .place-modal-media iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .place-video-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 9px 14px;
+            border-radius: 8px;
+            background: #1B6B3D;
+            color: white;
+            text-decoration: none;
+        }
+
+        .close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            padding: 4px 10px;
+            border: 0;
+            background: transparent;
+            color: #163b26;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        body {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            background-color: rgb(3, 47, 98);
+            background-image: url("шаблон.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body, .logo, nav a, .search input, .search button,
+        h1, h2, p, a, .subscription-form, .subscription-form input,
+        .subscription-form button, .contact-info {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parallax-background" aria-hidden="true">
+        <img class="parallax-image" src="парлкс1.jpg" data-speed="0.68" alt="">
+        <img class="parallax-image" src="парлкс2.webp" data-speed="0.82" alt="">
+        <img class="parallax-image" src="парлкс3.jpg" data-speed="0.55" alt="">
+        <img class="parallax-image" src="парлкс4.avif" data-speed="0.94" alt="">
+        <img class="parallax-image" src="парлкс5.jpg" data-speed="0.73" alt="">
+        <img class="parallax-image" src="парлкс6.jpg" data-speed="0.48" alt="">
+        <img class="parallax-image" src="парлкс7.jpg" data-speed="0.88" alt="">
+        <img class="parallax-image" src="парлкс8.jpg" data-speed="0.61" alt="">
+        <img class="parallax-image" src="парлкс9.jpg" data-speed="1.08" alt="">
+        <img class="parallax-image" src="парлкс10.jpg" data-speed="0.77" alt="">
+        <img class="parallax-image" src="парлкс11.jpg" data-speed="0.52" alt="">
+        <img class="parallax-image" src="парлкс12.jpg" data-speed="0.98" alt="">
+    </div>
+    <header>
+        <div class="music-player">
+            <img class="music-player-icon" src="musicicon.png" alt="">
+            <div class="music-player-controls">
+                <select id="musicTrack" aria-label="Выбор музыки">
+                    <option value="1">Мелодия 1</option>
+                    <option value="2">Мелодия 2</option>
+                    <option value="3">Мелодия 3</option>
+                    <option value="4">Мелодия 4</option>
+                    <option value="5">Мелодия 5</option>
+                    <option value="6">Мелодия 6</option>
+                </select>
+                <div class="music-player-transport">
+                    <button id="musicToggle" type="button" aria-label="Воспроизвести" title="Воспроизвести">▶</button>
+                    <input id="musicSeek" type="range" min="0" max="100" value="0" aria-label="Перемотка трека">
+                    <output id="musicTime">0:00</output>
+                </div>
+            </div>
+            <audio id="musicAudio" autoplay preload="metadata" src="music1.mp3"></audio>
+        </div>
+        <div class="theme-switcher" role="group" aria-label="Тема сайта">
+            <button class="theme-button" type="button" data-theme-choice="light" aria-label="Светлая тема" aria-pressed="true" title="Светлая тема">☀</button>
+            <button class="theme-button" type="button" data-theme-choice="dark" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема">☾</button>
+        </div>
+        <a href="index.html" class="logo">Сайт достопримечательностей Казахстана</a>
+        <nav>
+            <ul>
+                <li><a href="природа.html" aria-current="page">Природа</a></li>
+                <li><a href="города.html">Города</a></li>
+                <li><a href="главная.html">Курорты</a></li>
+                <li><a href="история и культурна.html">История и культура</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Поиск...">
+            <button type="button" onclick="searchCards()">Найти</button>
+            <output id="searchStatus" class="search-status" aria-live="polite" hidden></output>
+        </div>
+    </header>
+
+    <main>
+        <div class="card priroda">
+            <img src="priroda1.jpg" alt="Достопримечательность 1">
+            <div class="card-content">
+                <h2>Чарынский каньон</h2>
+                <p>Чарынский каньон — уникальный памятник природы, сложенный из осадочных пород, возраст которых составляет около 12 миллионов лет. Ландшафт каньона поражает своими величественными формами, напоминающими древние замки и башни. Самое популярное место — Долина замков, где можно прогуляться среди отвесных скал и насладиться суровой красотой полупустынного пейзажа.</p>
+                <a href="#">Подробнее</a>
+            </div>
+        </div>
+        <div class="card priroda">
+            <img src="priroda2.jpg" alt="Достопримечательность 2">
+            <div class="card-content">
+                <h2>Озеро Кайынды</h2>
+                <p>Озеро Кайынды — одна из самых необычных природных достопримечательностей Казахстана, возникшая в результате землетрясения 1911 года. Главная feature озера — затонувший хвойный лес, стволы Тянь-Шаньских елей поднимаются прямо из бирюзовой воды. Вода здесь остается очень холодной круглый год, благодаря чему иголки на деревьях прекрасно сохранились.</p>
+                <a href="#">Подробнее</a>
+            </div>
+        </div>
+    </main>
+
+    <button id="scrollToTopButton" aria-label="Наверх">↑</button>
+
+    <footer>
+        <div class="subscription-form">
+            <p><strong>Подписка на рассылку:</strong></p>
+            <form>
+                <input type="email" placeholder="Введите ваш email" required>
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+
+        <div class="footer-container">
+            <p>&copy; 2026 Сайт достопримечательностей Казахстана</p>
+
+           <div class="social-links">
+                <a href="https://www.youtube.com/" target="_blank">
+                    <img src="youtube.png" alt="Youtube" class="social-icon">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <img src="instagram.jpg"Instagram" class="social-icon">
+                </a>
+                <a href="https://www.telegram.com/" target="_blank">
+                    <img src="telegram.png"Telegram" class="social-icon">
+                </a>
+                <a href="https://wa.me/77751450220" target="_blank" rel="noopener noreferrer">
+                    <img src="ватсап.jpg" alt="WhatsApp" class="social-icon">
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Контактная информация:</strong></p>
+                <p>Электронная почта: <a href="главная.html">banzangetsu@gmail.com</a></p>
+                <p>Телефон: <a href="tel:+77751450220">+7 775 145 0220</a></p>
+                <p>Адрес: <a href="https://maps.app.goo.gl/WQVjGix9mJr55ecv8" target="_blank" rel="noopener noreferrer">Esentai Mall, Алматы</a></p>
+            </div>
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps?q=43.2184297,76.9276667&amp;z=16&amp;output=embed" title="Карта Google Maps: Esentai Mall, Алматы" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+    function showpriroda(title, imageSrc, description) {
+        var modal = document.getElementById('myModal');
+        var priroda = document.getElementById('priroda');
+        var prirodaImage = document.getElementById('prirodaImage');
+        var recioeDescription = document.getElementById('prirodaDescription');
+
+        priroda.textContent = title;
+        prirodaImage.src = imageSrc;
+        prirodaDescription.textContent = description;
+
+        modal.style.display = 'block';
+    }
+
+    function closeModal() {
+        var modal = document.getElementById('placeModal');
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var modal = document.getElementById('placeModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+    const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+    function toggleScrollButton() {
+        if (window.scrollY > 250) {
+            scrollToTopButton.style.display = 'block';
+        } else {
+            scrollToTopButton.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('scroll', toggleScrollButton);
+    scrollToTopButton.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    toggleScrollButton();
+    </script>
+
+    
+
+    <div id="placeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
+        <div class="modal-content place-modal">
+            <button class="close" type="button" aria-label="Закрыть" onclick="closeModal()">&times;</button>
+            <h2 id="placeModalTitle"></h2>
+            <img id="placeModalImage" class="place-modal-image" src="" alt="">
+            <p id="placeModalDescription"></p>
+            <div class="place-modal-media">
+                <div>
+                    <h3>Карта</h3>
+                    <iframe id="placeModalMap" title="Карта места" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div>
+                    <h3>Видео о месте</h3>
+                    <a id="placeModalVideo" class="place-video-link" href="#" target="_blank" rel="noopener noreferrer">Найти видео на YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var placeModal = document.getElementById('placeModal');
+        var placeTitle = document.getElementById('placeModalTitle');
+        var placeImage = document.getElementById('placeModalImage');
+        var placeDescription = document.getElementById('placeModalDescription');
+        var placeMap = document.getElementById('placeModalMap');
+        var placeVideo = document.getElementById('placeModalVideo');
+
+        document.querySelectorAll('.card .card-content a').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var card = button.closest('.card');
+                var title = card.querySelector('h2').textContent.trim();
+                var description = card.querySelector('.card-content p').textContent.trim();
+                var image = card.querySelector('img');
+                var placeQuery = title + ', Казахстан';
+
+                placeTitle.textContent = title;
+                placeDescription.textContent = description;
+                placeImage.src = image.src;
+                placeImage.alt = image.alt;
+                placeMap.src = 'https://www.google.com/maps?q=' + encodeURIComponent(placeQuery) + '&output=embed';
+                placeVideo.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(title + ' Казахстан');
+                placeModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeModal() {
+            placeModal.style.display = 'none';
+            placeMap.src = '';
+            document.body.style.overflow = '';
+        }
+
+        placeModal.addEventListener('click', function(event) {
+            if (event.target === placeModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && placeModal.style.display === 'block') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <script src="parallax.js"></script>
+</body>
+</html>
