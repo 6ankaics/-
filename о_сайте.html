@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт достопримечательностей Казахстана</title>
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('site-theme') === 'dark' ? 'dark' : 'light');
+    </script>
+    <link rel="stylesheet" href="parallax.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            background-color: rgb(3, 47, 98);
+            background-image: url("шаблон.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        header {
+            background-color: #1B6B3D;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #a7d890;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f9fbfa;
+            text-decoration: none;
+        }
+
+        .logo[aria-current="page"] {
+            text-decoration: underline;
+            text-decoration-color: #d7f7c8;
+            text-decoration-thickness: 3px;
+            text-underline-offset: 6px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: aliceblue;
+            font-weight: bold;
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 8px 18px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
+
+        .card-content {
+            padding: 28px 26px;
+            background: rgba(19, 62, 42, 0.58);
+            text-align: left;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 34px;
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 18px;
+            color: #edf3ef;
+        }
+
+        footer {
+            background: linear-gradient(180deg, #1B6B3D, #14552f);
+            border-top: 3px solid #a7d890;
+            padding: 28px 0 18px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.16);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .footer-container > p {
+            margin: 0;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-info a {
+            color: #DDD;
+            text-decoration: none;
+        }
+
+        .subscription-form {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .subscription-form form {
+            font-family: 'Comic Sans MS', cursive;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .subscription-form input {
+            font-family: 'Comic Sans MS', cursive;
+            box-sizing: border-box;
+            width: 220px;
+            padding: 10px;
+            border: 1px solid rgba(215, 247, 200, 0.75);
+            border-radius: 8px;
+            background: #f7fff3;
+        }
+
+        .subscription-form button {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #d7f7c8;
+            color: #103a23;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .subscription-form button:hover {
+            background-color: #a7d890;
+            transform: translateY(-1px);
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+        }
+
+        .map-section {
+            width: 220px;
+        }
+
+        .map-section iframe {
+            display: block;
+            width: 220px;
+            height: 220px;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        .map-section a {
+            color: #DDD;
+        }
+
+        @media (max-width: 700px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .subscription-form input {
+                width: min(220px, calc(100vw - 80px));
+            }
+
+            .map-section {
+                width: min(220px, calc(100vw - 80px));
+            }
+
+            .map-section iframe {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="parallax-background" data-layout="compact" aria-hidden="true">
+        <img class="parallax-image" src="парлкс1.jpg" data-speed="0.68" alt="">
+        <img class="parallax-image" src="парлкс4.avif" data-speed="0.94" alt="">
+        <img class="parallax-image" src="парлкс8.jpg" data-speed="0.61" alt="">
+        <img class="parallax-image" src="парлкс12.jpg" data-speed="0.98" alt="">
+    </div>
+    <header>
+        <div class="theme-switcher" role="group" aria-label="Тема сайта">
+            <button class="theme-button" type="button" data-theme-choice="light" aria-label="Светлая тема" aria-pressed="true" title="Светлая тема">☀</button>
+            <button class="theme-button" type="button" data-theme-choice="dark" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема">☾</button>
+        </div>
+        <a href="о_сайте.html" class="logo" aria-current="page">Сайт достопримечательностей Казахстана</a>
+        <nav>
+            <ul>
+                <li><a href="природа.html">Природа</a></li>
+                <li><a href="города.html">Города</a></li>
+                <li><a href="главная.html">Курорты</a></li>
+                <li><a href="история и культурна.html">История и культура</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="card-content">
+                <h1>Сайт достопримечательностей Казахстана</h1>
+                <p>Этот сайт создан для тех, кто хочет познакомиться с красотой и богатством Казахстана. Здесь собраны самые интересные природные, исторические и культурные места страны: живописные курорты, древние памятники, большие города и удивительные ландшафты.</p>
+                <p>На нашем ресурсе вы найдёте краткие описания популярных объектов, которые помогут выбрать маршрут, понять особенности регионов и вдохновиться на путешествие по Казахстану.</p>
+                <p>Мы рассказываем о местах, где можно отдыхать, изучать историю, любоваться природой и открывать для себя новые впечатления в самом сердце Центральной Азии.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="subscription-form">
+            <p><strong>Подписка на рассылку:</strong></p>
+            <form>
+                <input type="email" placeholder="Введите ваш email" required>
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+        <div class="footer-container">
+            <p>&copy; 2026 Сайт достопримечательностей Казахстана</p>
+
+            <div class="social-links">
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="youtube.png" alt="YouTube" class="social-icon">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="instagram.jpg" alt="Instagram" class="social-icon">
+                </a>
+                <a href="https://www.telegram.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="telegram.png" alt="Telegram" class="social-icon">
+                </a>
+                <a href="https://wa.me/77751450220" target="_blank" rel="noopener noreferrer">
+                    <img src="ватсап.jpg" alt="WhatsApp" class="social-icon">
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Контактная информация:</strong></p>
+                <p>Электронная почта: <a href="mailto:banzangetsu@gmail.com">banzangetsu@gmail.com</a></p>
+                <p>Телефон: <a href="tel:+77751450220">+7 775 145 0220</a></p>
+                <p>Адрес: <a href="https://maps.app.goo.gl/WQVjGix9mJr55ecv8" target="_blank" rel="noopener noreferrer">Esentai Mall, Алматы</a></p>
+            </div>
+
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps?q=43.2184297,76.9276667&amp;z=16&amp;output=embed" title="Карта Google Maps: Esentai Mall, Алматы" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+    <script src="parallax.js"></script>
+</body>
+</html>

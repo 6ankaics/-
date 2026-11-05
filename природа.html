@@ -397,30 +397,11 @@
         <img class="parallax-image" src="парлкс12.jpg" data-speed="0.98" alt="">
     </div>
     <header>
-        <div class="music-player">
-            <img class="music-player-icon" src="musicicon.png" alt="">
-            <div class="music-player-controls">
-                <select id="musicTrack" aria-label="Выбор музыки">
-                    <option value="1">Мелодия 1</option>
-                    <option value="2">Мелодия 2</option>
-                    <option value="3">Мелодия 3</option>
-                    <option value="4">Мелодия 4</option>
-                    <option value="5">Мелодия 5</option>
-                    <option value="6">Мелодия 6</option>
-                </select>
-                <div class="music-player-transport">
-                    <button id="musicToggle" type="button" aria-label="Воспроизвести" title="Воспроизвести">▶</button>
-                    <input id="musicSeek" type="range" min="0" max="100" value="0" aria-label="Перемотка трека">
-                    <output id="musicTime">0:00</output>
-                </div>
-            </div>
-            <audio id="musicAudio" autoplay preload="metadata" src="music1.mp3"></audio>
-        </div>
         <div class="theme-switcher" role="group" aria-label="Тема сайта">
             <button class="theme-button" type="button" data-theme-choice="light" aria-label="Светлая тема" aria-pressed="true" title="Светлая тема">☀</button>
             <button class="theme-button" type="button" data-theme-choice="dark" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная тема">☾</button>
         </div>
-        <a href="index.html" class="logo">Сайт достопримечательностей Казахстана</a>
+        <a href="о_сайте.html" class="logo">Сайт достопримечательностей Казахстана</a>
         <nav>
             <ul>
                 <li><a href="природа.html" aria-current="page">Природа</a></li>
@@ -453,6 +434,7 @@
                 <a href="#">Подробнее</a>
             </div>
         </div>
+        <section class="landmarks-quiz" aria-label="Викторина о достопримечательностях Казахстана"></section>
     </main>
 
     <button id="scrollToTopButton" aria-label="Наверх">↑</button>
@@ -606,6 +588,7 @@
         });
     </script>
 
+    <script src="quiz.js"></script>
     <script src="parallax.js"></script>
 </body>
 </html>
